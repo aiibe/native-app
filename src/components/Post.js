@@ -3,7 +3,8 @@ import {TouchableOpacity, View, Text, StyleSheet, Dimensions, Image} from 'react
 import {withNavigation} from 'react-navigation';
 
 // Components
-import ScaleImage from './ScaleImage'
+import ScaleImage from './ScaleImage';
+import PostMeta from './PostMeta'
 
 class Post extends Component {
 
@@ -15,17 +16,14 @@ class Post extends Component {
 	}
 
 	render(){
+		console.log("Post render", this.props.item)
 		return (
 			<View style={Styles.container}>
 				<TouchableOpacity onPress={() => this.goToPost()}>
 					<Text style={Styles.title}>{this.props.item.title}</Text>
 				</TouchableOpacity>
 				<ScaleImage	source={this.props.item.media} />
-				<View style={Styles.info}>
-					<TouchableOpacity onPress={() => this.goToPost()}>
-						<Text>23 Comments</Text>
-					</TouchableOpacity>
-				</View>
+				<PostMeta source={this.props.item} />
 			</View>
 		)
 	}
@@ -35,12 +33,12 @@ const Styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginBottom: 20,
-		backgroundColor: '#fff'
+		backgroundColor: '#333333'
 	},
 	title: {
 		fontSize: 20,
 		fontWeight: 'bold',
-		color: "#161719",
+		color: "#fff",
 		padding: 10
 	},
 	info: {

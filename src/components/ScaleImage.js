@@ -25,14 +25,15 @@ class ScaleImage extends Component {
 	}
 
 	viewFullImage(){
-		const source = {
-			uri: this.props.source,
-			style: this.state.style
-		}
-		console.log("Image pressed")
+		// Open fullscreen image
 		this.props.navigation.navigate(
 			"FullScreen",
-			{source}
+			{
+				source: {
+					uri: this.props.source,
+					style: this.state.style
+				}
+			}
 		)
 	}
 

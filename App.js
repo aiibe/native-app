@@ -5,6 +5,7 @@ import {createStackNavigator} from 'react-navigation';
 // Screens
 import PostScreen from './src/screens/PostScreen';
 import FullImageScreen from './src/screens/FullImageScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 // Components
 import Logo from './src/components/svg/Logo';
@@ -21,6 +22,7 @@ class App extends Component {
   // Header bar
   static navigationOptions = {
     headerTitle: <Logo />,
+    headerStyle: {backgroundColor: "#212121"},
     headerLeft: (<View></View>), 
     headerRight: (<View></View>)
   }
@@ -38,7 +40,7 @@ class App extends Component {
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: "red",
   }
 })
 
@@ -49,6 +51,7 @@ const Navigator = createStackNavigator({
   Home: App,
   Post: PostScreen,
   FullScreen: FullImageScreen,
+  Login: LoginScreen
 })
 
 

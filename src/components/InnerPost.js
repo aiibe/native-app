@@ -3,7 +3,8 @@ import {StyleSheet, View, Text} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
 // Components
-import ScaleImage from './ScaleImage'
+import ScaleImage from './ScaleImage';
+import PostMeta from './PostMeta';
 
 class InnerPost extends Component {
 
@@ -14,9 +15,7 @@ class InnerPost extends Component {
 				<ScaleImage
 					onPress={() => this.viewImage()}
 					source={this.props.item.media} />
-				<View style={Styles.info}>
-					<Text>23 Comments</Text>
-				</View>
+				<PostMeta source={this.props.item} />
 			</View>
 		)
 	}
@@ -26,12 +25,12 @@ const Styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginBottom: 20,
-		backgroundColor: '#fff'
+		backgroundColor: '#333333'
 	},
 	title: {
 		fontSize: 20,
 		fontWeight: 'bold',
-		color: "#161719",
+		color: "#fff",
 		padding: 10
 	},
 	info: {

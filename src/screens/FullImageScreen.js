@@ -8,7 +8,6 @@ class FullImageScreen extends Component {
 
 	render(){
 		const source = this.props.navigation.getParam("source")
-		console.log("FullImageScreen", source)
 		return (
 			<ZoomableImage
 				style={{flex: 1, backgroundColor: "#333" }}
