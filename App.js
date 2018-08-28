@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 
+// Screens
+import PostScreen from './src/screens/PostScreen';
+import FullImageScreen from './src/screens/FullImageScreen';
+
 // Components
 import Logo from './src/components/svg/Logo';
 import Content from './src/components/Content';
@@ -42,7 +46,9 @@ const Styles = StyleSheet.create({
 // Router
 // Stack Navigator
 const Navigator = createStackNavigator({
-  Home: App
+  Home: App,
+  Post: PostScreen,
+  FullScreen: FullImageScreen,
 })
 
 

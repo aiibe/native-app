@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-scalable-image": "^0.4.0",
+    "react-native-fast-image": "^5.0.3",
+    "react-native-photo-view": "^1.5.2",
     "react-native-svg": "^6.5.2",
     "react-navigation": "^2.12.1"
   },

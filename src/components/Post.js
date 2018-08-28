@@ -1,18 +1,30 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import Image from 'react-native-scalable-image';
+import {TouchableOpacity, View, Text, StyleSheet, Dimensions, Image} from 'react-native';
+import {withNavigation} from 'react-navigation';
+
+// Components
+import ScaleImage from './ScaleImage'
 
 class Post extends Component {
+
+	goToPost(){
+		this.props.navigation.navigate(
+			"Post",
+			{item: this.props.item}
+		)
+	}
+
 	render(){
 		return (
 			<View style={Styles.container}>
-				<Text style={Styles.title}>{this.props.item.title}</Text>
-				<Image
-					width={Dimensions.get('window').width} 
-					style={Styles.media} 
-					source={{uri: this.props.item.media}} />
+				<TouchableOpacity onPress={() => this.goToPost()}>
+					<Text style={Styles.title}>{this.props.item.title}</Text>
+				</TouchableOpacity>
+				<ScaleImage	source={this.props.item.media} />
 				<View style={Styles.info}>
-					<Text>23 Comments</Text>
+					<TouchableOpacity onPress={() => this.goToPost()}>
+						<Text>23 Comments</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		)
@@ -31,12 +43,9 @@ const Styles = StyleSheet.create({
 		color: "#161719",
 		padding: 10
 	},
-	media: {
-		resizeMode: 'contain'
-	},
 	info: {
 		padding: 10
 	}
 })
 
-export default Post
+export default withNavigation(Post)

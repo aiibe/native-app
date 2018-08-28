@@ -15,6 +15,11 @@ class Content extends Component {
 			]
 		}
 	}
+
+	onScrolling(event){
+		console.log("Scrolling to:", event.nativeEvent.contentOffset.y)
+	}
+
 	render() {
 		return (
 			<View style={Styles.container}>
