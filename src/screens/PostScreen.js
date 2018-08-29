@@ -6,6 +6,7 @@ import {Text} from 'react-native';
 
 // Components
 import InnerPost from '../components/InnerPost';
+import Comments from '../components/Comments';
 import Back from '../components/svg/Back';
 
 
@@ -23,6 +24,7 @@ class PostScreen extends Component {
 		return (
 			<ScrollView style={Styles.container}>
 				<InnerPost item={this.props.navigation.getParam("item")} />
+				<Comments comments={this.props.navigation.getParam("item").comments}/>
 			</ScrollView>
 		)
 	}

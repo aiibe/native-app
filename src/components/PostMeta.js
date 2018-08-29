@@ -16,7 +16,7 @@ class PostMeta extends Component {
 	}
 
 	authorized(){
-		return false
+		return true
 	}
 
 	goToPost(){
@@ -49,7 +49,7 @@ class PostMeta extends Component {
 					<Text style={Styles.likesCount}>{item.likes}</Text>
 				</View>
 				<TouchableOpacity onPress={() => this.goToPost()}>
-					<Text style={Styles.comments}>{item.comments.total} Comments</Text>
+					<Text style={Styles.comments}>{item.comments.length} Comments</Text>
 				</TouchableOpacity>
 			</View>
 		)
