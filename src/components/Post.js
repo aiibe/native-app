@@ -4,7 +4,7 @@ import {withNavigation} from 'react-navigation';
 
 // Components
 import ScaleImage from './ScaleImage';
-import PostMeta from './PostMeta'
+import PostMeta from './PostMeta';
 
 class Post extends Component {
 
@@ -16,7 +16,6 @@ class Post extends Component {
 	}
 
 	render(){
-		console.log("Post render", this.props.item)
 		return (
 			<View style={Styles.container}>
 				<TouchableOpacity onPress={() => this.goToPost()}>

@@ -2,9 +2,17 @@ import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
+// Components
+import Like from '../components/svg/Like';
+import Liked from '../components/svg/Liked';
+
+
 class PostMeta extends Component {
 	constructor(props){
 		super(props)
+		this.state = {
+			liked: false
+		}
 	}
 
 	authorized(){
@@ -22,12 +30,8 @@ class PostMeta extends Component {
 	upVote(){
 		if (!this.authorized()){
 			this.goToLogin()
-		}
-	}
-
-	downVote(){
-		if (!this.authorized()){
-			this.goToLogin()
+		} else {
+			this.setState({liked:true})
 		}
 	}
 
@@ -36,15 +40,16 @@ class PostMeta extends Component {
 		return (
 			<View style={Styles.info}>
 				<View style={Styles.votes}>
-					<TouchableOpacity style={Styles.touch} onPress={() => this.upVote()}>
-						<Text style={Styles.touch}>Upvote</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={Styles.touch} onPress={() => this.downVote()}>
-						<Text style={Styles.touch}>Downvote</Text>
-					</TouchableOpacity>
+					{
+						this.state.liked ? 
+						<Liked onPress={() => this.upVote()} />
+						:
+						<Like onPress={() => this.upVote()} />
+					}
+					<Text style={Styles.likesCount}>{item.likes}</Text>
 				</View>
-				<TouchableOpacity style={Styles.touch} onPress={() => this.goToPost()}>
-					<Text style={Styles.touch}>{item.comments} Comments</Text>
+				<TouchableOpacity onPress={() => this.goToPost()}>
+					<Text style={Styles.comments}>{item.comments.total} Comments</Text>
 				</TouchableOpacity>
 			</View>
 		)
@@ -59,12 +64,16 @@ const Styles = StyleSheet.create({
 		color: '#fff'
 	},
 	votes: {
-		width: "35%",
+		width: "20%",
 		flexDirection: 'row',
-		justifyContent: 'space-between'
+		alignItems: 'baseline'
 	},
-	touch: {
-		color: "#fff"
+	likesCount: {
+		color: "#fff",
+		marginLeft: 10,
+	}, 
+	comments: {
+		color: '#fff'
 	}
 })
 

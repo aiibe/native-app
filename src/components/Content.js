@@ -9,9 +9,9 @@ class Content extends Component {
 		super(props)
 		this.state = {
 			localFakeData: [
-				{id: 1, title:"Hello World", type:"image", media:"https://i.imgur.com/MBsU2jt.jpg", comments:113 },
-				{id: 2, title:"Narhuk thaeee", type:"image", media:"https://i.imgur.com/bW26VnN.jpg", comments:75 },
-				{id: 3, title:"Wowww", type:"image", media:"https://i.imgur.com/WHnh74Q.jpg", comments:267 },
+				{id: 1, title:"Hello World", type:"image", media:"https://i.imgur.com/MBsU2jt.jpg", comments:{total: 113}, likes: 44 },
+				{id: 2, title:"Narhuk thaeee", type:"image", media:"https://i.imgur.com/bW26VnN.jpg", comments:{total:75}, likes: 20 },
+				{id: 3, title:"Wowww", type:"image", media:"https://i.imgur.com/WHnh74Q.jpg", comments:{total:267}, likes: 135 },
 			]
 		}
 	}
