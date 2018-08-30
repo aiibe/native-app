@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 
+// Server requests
+import axios from 'axios';
+import {source} from '../../Settings';
+
 // Components
 import Post from './Post'
 
@@ -8,12 +12,17 @@ class Content extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			localFakeData: [
-				{id: 1, title:"Hello World", type:"image", media:"https://i.imgur.com/MBsU2jt.jpg", comments:[{id: 113, author:"Bush", say:"Sexy p leuk"}, {id: 126, author:"Megan", say:"Ngam thae ngam wa"}], likes: 44 },
-				{id: 2, title:"Narhuk thaeee", type:"image", media:"https://i.imgur.com/bW26VnN.jpg", comments:[{id: 111, author:"Arun", say:"Buiiii"}, {id: 127, author:"Alex777", say:"Khruk phod boc"} ], likes: 20 },
-				{id: 3, title:"Wowww", type:"image", media:"https://i.imgur.com/WHnh74Q.jpg", comments:[{id: 116, author:"Alice", say:"Sout X"}, {id: 126, author:"John", say:"Ohoho"} ], likes: 135 },
-			]
+			localFakeData: []
 		}
+	}
+
+	componentDidMount(){
+		axios.get(source.fakePosts)
+		// TODO : Check error response  
+		.then( response => {
+			const localFakeData = [...response.data.posts] // Map response.data.posts to localFakeData
+			this.setState({ localFakeData }) // Update our state localFakeData
+		})
 	}
 
 	render() {
