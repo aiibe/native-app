@@ -16,7 +16,7 @@ class PostMeta extends Component {
 	}
 
 	authorized(){
-		return true
+		return false
 	}
 
 	goToPost(){
@@ -31,7 +31,7 @@ class PostMeta extends Component {
 		if (!this.authorized()){
 			this.goToLogin()
 		} else {
-			this.setState({liked:true})
+			this.setState({liked: !this.state.liked})
 		}
 	}
 

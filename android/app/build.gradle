@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile 'com.facebook.fresco:animated-gif:1.9.0' // For animated GIF support
     compile project(':react-native-fast-image')
     compile project(':react-native-svg')
     compile fileTree(dir: "libs", include: ["*.jar"])

@@ -17,7 +17,6 @@ import Content from './src/components/Content';
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {}
   }
 
   // Header bar
@@ -30,7 +29,9 @@ class App extends Component {
 
   render() {
     return (
-      <Content />
+      <View style={{flex:1, backgroundColor:'blue'}}>
+        <Content />
+      </View>
     );
   }
 }

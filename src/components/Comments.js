@@ -5,7 +5,6 @@ import {View, StyleSheet, Text, FlatList} from 'react-native';
 class Comment extends Component {
 	render(){
 		const comment = this.props.item
-		console.log("Comment", comment)
 		return (
 			<View style={Styles.comment}>
 				<Text style={Styles.author}>{comment.author}</Text>
@@ -19,7 +18,6 @@ class Comment extends Component {
 class Comments extends Component {
 	render(){
 		const comments = this.props.comments
-		console.log("Comments", comments)
 		return (
 			<View style={Styles.container}>
 				<Text style={Styles.title}>COMMENTS</Text>
