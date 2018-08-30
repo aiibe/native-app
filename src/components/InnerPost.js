@@ -13,9 +13,12 @@ class InnerPost extends Component {
 			<View style={Styles.container}>
 				<Text style={Styles.title}>{this.props.item.title}</Text>
 				<ScaleImage
-					onPress={() => this.viewImage()}
+					// showHeart={this.state.showHeart}
+					onDoubleTap={() => console.log("this.upVote() double")}
 					source={this.props.item.media} />
-				<PostMeta source={this.props.item} />
+				<PostMeta 
+					onUpVote={() => console.log("this.upVote() onUpVote")}
+					source={this.props.item} />
 			</View>
 		)
 	}

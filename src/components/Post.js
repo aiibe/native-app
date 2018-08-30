@@ -7,6 +7,14 @@ import ScaleImage from './ScaleImage';
 import PostMeta from './PostMeta';
 
 class Post extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			liked: false,
+			authorized: true,
+			showHeart: false
+		}
+	}
 
 	goToPost(){
 		this.props.navigation.navigate(
@@ -15,14 +23,48 @@ class Post extends Component {
 		)
 	}
 
+	goToLogin(){
+		this.props.navigation.navigate("Login")
+	}
+
+	undoShowHeart(){
+		setTimeout(
+			() => this.setState({showHeart: !this.state.showHeart}),
+			800 // 0.8 seconds
+		)
+	}
+
+	upVote(){
+		if (!this.state.authorized){
+			this.goToLogin()
+		} else {
+			if (this.state.liked == true){
+				this.setState({liked: !this.state.liked })
+			}
+			else {
+					this.setState(
+					{liked: !this.state.liked, showHeart: true},
+					() => this.undoShowHeart()
+				)
+			}
+		}
+	}
+
+
 	render(){
 		return (
 			<View style={Styles.container}>
 				<TouchableOpacity onPress={() => this.goToPost()}>
 					<Text style={Styles.title}>{this.props.item.title}</Text>
 				</TouchableOpacity>
-				<ScaleImage	source={this.props.item.media} />
-				<PostMeta source={this.props.item} />
+				<ScaleImage
+					showHeart={this.state.showHeart}
+					onDoubleTap={() => this.upVote()}
+					source={this.props.item.media} />
+				<PostMeta
+					liked={this.state.liked}
+					source={this.props.item}
+					onUpVote={() => this.upVote() }/>
 			</View>
 		)
 	}

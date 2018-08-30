@@ -8,31 +8,9 @@ import Liked from '../components/svg/Liked';
 
 
 class PostMeta extends Component {
-	constructor(props){
-		super(props)
-		this.state = {
-			liked: false
-		}
-	}
-
-	authorized(){
-		return false
-	}
 
 	goToPost(){
 		this.props.navigation.navigate("Post", {item: this.props.source})
-	}
-
-	goToLogin(){
-		this.props.navigation.navigate("Login")
-	}
-
-	upVote(){
-		if (!this.authorized()){
-			this.goToLogin()
-		} else {
-			this.setState({liked: !this.state.liked})
-		}
 	}
 
 	render(){
@@ -41,10 +19,10 @@ class PostMeta extends Component {
 			<View style={Styles.info}>
 				<View style={Styles.votes}>
 					{
-						this.state.liked ? 
-						<Liked onPress={() => this.upVote()} />
+						this.props.liked ? 
+						<Liked onPress={() => this.props.onUpVote()} />
 						:
-						<Like onPress={() => this.upVote()} />
+						<Like onPress={() => this.props.onUpVote()} />
 					}
 					<Text style={Styles.likesCount}>{item.likes}</Text>
 				</View>

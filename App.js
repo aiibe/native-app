@@ -4,7 +4,6 @@ import {createStackNavigator} from 'react-navigation';
 
 // Screens
 import PostScreen from './src/screens/PostScreen';
-import FullImageScreen from './src/screens/FullImageScreen';
 import LoginScreen from './src/screens/LoginScreen';
 
 
@@ -42,7 +41,6 @@ const Navigator = createStackNavigator(
   {
     Home: App,
     Post: PostScreen,
-    FullScreen: FullImageScreen,
     Login: LoginScreen
   },
   {
