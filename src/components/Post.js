@@ -30,7 +30,7 @@ class Post extends Component {
 	undoShowHeart(){
 		setTimeout(
 			() => this.setState({showHeart: !this.state.showHeart}),
-			800 // 0.8 seconds
+			400 // 0.8 seconds
 		)
 	}
 

@@ -13,7 +13,7 @@ import Back from '../components/svg/Back';
 class PostScreen extends Component {
 	// Header bar
 	static navigationOptions = {
-	   headerTitle: "Post", // <Logo />,
+	   headerTitle: "Discussion", // <Logo />,
 	   headerTitleStyle: {color: '#fff'},
 	   headerStyle: {backgroundColor: "#212121"},
 	   headerLeft: (<View><Back /></View>), 
