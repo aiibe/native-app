@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 
-// Store
-import {Provider} from 'react-redux';
-import store from './src/store';
-
 // Screens
 import PostScreen from './src/screens/PostScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -32,11 +28,9 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <View style={{flex:1, backgroundColor:'blue'}}>
-          <Content />
-        </View>
-      </Provider>
+      <View style={{flex:1, backgroundColor:'blue'}}>
+        <Content />
+      </View>
     );
   }
 }
