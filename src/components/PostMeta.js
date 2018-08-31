@@ -19,10 +19,10 @@ class PostMeta extends Component {
 			<View style={Styles.info}>
 				<View style={Styles.votes}>
 					{
-						this.props.liked ? 
-						<Liked onPress={() => this.props.onUpVote()} />
-						:
-						<Like onPress={() => this.props.onUpVote()} />
+						this.props.source.liked ? 
+							(<Liked onPress={() => this.props.onUpVote()} />)
+							:
+							(<Like onPress={() => this.props.onUpVote()} />)
 					}
 					<Text style={Styles.likesCount}>{item.likes}</Text>
 				</View>
@@ -54,5 +54,6 @@ const Styles = StyleSheet.create({
 		color: '#fff'
 	}
 })
+
 
 export default withNavigation(PostMeta)

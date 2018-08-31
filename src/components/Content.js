@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 
+// Redux Store
+import {connect} from 'react-redux';
+import {init} from '../actions/Content';
+
 // Server requests
 import axios from 'axios';
 import {source} from '../../Settings';
@@ -11,17 +15,14 @@ import Post from './Post'
 class Content extends Component {
 	constructor(props){
 		super(props)
-		this.state = {
-			localFakeData: []
-		}
 	}
 
 	componentDidMount(){
 		axios.get(source.fakePosts)
 		// TODO : Check error response  
 		.then( response => {
-			const localFakeData = [...response.data.posts] // Map response.data.posts to localFakeData
-			this.setState({ localFakeData }) // Update our state localFakeData
+			const posts = [...response.data.posts] // Map response.data.posts to redux store
+			this.props.initLoad(posts) // Update our state
 		})
 	}
 
@@ -29,7 +30,7 @@ class Content extends Component {
 		return (
 			<View style={Styles.container}>
 				<FlatList
-					data={this.state.localFakeData}
+					data={this.props.posts}
 					keyExtractor={(item) => item.id.toString() }
 					renderItem={ ({item}) => <Post item={item} /> }
 					/>
@@ -45,4 +46,19 @@ const Styles = StyleSheet.create({
 	}
 })
 
-export default Content
+
+// Connect to Redux Store
+const mapStateToProps = state => {
+	console.log("Content:", state)
+	return {
+		posts: state.posts
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		initLoad: posts => dispatch(init(posts))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content)

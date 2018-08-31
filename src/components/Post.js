@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Dimensions, Image} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
+// Connect to Redux Store
+import {connect} from 'react-redux';
+import {like, unlike} from '../actions/Content';
+
 // Components
 import ScaleImage from './ScaleImage';
 import PostMeta from './PostMeta';
@@ -10,8 +14,6 @@ class Post extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			liked: false,
-			authorized: true,
 			showHeart: false
 		}
 	}
@@ -35,17 +37,15 @@ class Post extends Component {
 	}
 
 	upVote(){
-		if (!this.state.authorized){
+		if (!this.props.auth){
 			this.goToLogin()
 		} else {
-			if (this.state.liked == true){
-				this.setState({liked: !this.state.liked })
+			if (this.props.item.liked == true){
+				this.props.unlike(this.props.item)
 			}
 			else {
-					this.setState(
-					{liked: !this.state.liked, showHeart: true},
-					() => this.undoShowHeart()
-				)
+				this.props.like(this.props.item)
+				this.setState({showHeart: true},	() => this.undoShowHeart())
 			}
 		}
 	}
@@ -62,7 +62,6 @@ class Post extends Component {
 					onDoubleTap={() => this.upVote()}
 					source={this.props.item.media} />
 				<PostMeta
-					liked={this.state.liked}
 					source={this.props.item}
 					onUpVote={() => this.upVote() }/>
 			</View>
@@ -87,4 +86,18 @@ const Styles = StyleSheet.create({
 	}
 })
 
-export default withNavigation(Post)
+const mapStateToProps = state => {
+	return {
+		auth: state.auth
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		like: post => dispatch(like(post)),
+		unlike: post => dispatch(unlike(post))
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(Post))
