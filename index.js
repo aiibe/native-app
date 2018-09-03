@@ -8,7 +8,12 @@ import {name as appName} from './app.json';
 import {Provider} from 'react-redux';
 import store from './src/store';
 
+
 class Mapper extends Component {
+	componentDidMount(){
+
+	}
+
 	render(){
 		return(
 			<Provider store={store}>

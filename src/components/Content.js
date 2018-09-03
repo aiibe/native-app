@@ -10,7 +10,12 @@ import axios from 'axios';
 import {source} from '../../Settings';
 
 // Components
-import Post from './Post'
+import Post from './Post';
+
+
+// Testing
+import New from './New';
+import firebase from 'react-native-firebase';
 
 class Content extends Component {
 	constructor(props){
@@ -18,17 +23,21 @@ class Content extends Component {
 	}
 
 	componentDidMount(){
+		// Load latest posts
 		axios.get(source.fakePosts)
 		// TODO : Check error response  
 		.then( response => {
 			const posts = [...response.data.posts] // Map response.data.posts to redux store
 			this.props.initLoad(posts) // Update our state
 		})
+
 	}
+
 
 	render() {
 		return (
 			<View style={Styles.container}>
+				<New />
 				<FlatList
 					data={this.props.posts}
 					keyExtractor={(item) => item.id.toString() }
@@ -49,7 +58,7 @@ const Styles = StyleSheet.create({
 
 // Connect to Redux Store
 const mapStateToProps = state => {
-	console.log("Content:", state)
+	// console.log("Content:", state)
 	return {
 		posts: state.posts
 	}
