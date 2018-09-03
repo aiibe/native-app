@@ -16,8 +16,7 @@ class Content extends Component {
 	}
 
 	componentDidMount(){	
-		// Will fetch latest posts
-		// this.props.dispatch(fetchUpdates())
+		// Should fetch cached version of state in AsyncStorage
 	}
 
 

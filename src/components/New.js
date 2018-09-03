@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+
+// Redux Store
+import {connect} from 'react-redux';
+import {newUpdates, getUpdates} from '../actions/Update';
 
 // Firebase
 import firebase from 'react-native-firebase';
@@ -9,13 +13,10 @@ class New extends Component {
 	constructor(props){
 		super(props)
 		this.messageListener = null
-		this.state = {
-			visible: false
-		}
 	}
 
 	componentDidMount(){
-		console.log("componentDidMount --New")
+		// console.log("componentDidMount --New")
 
 		// Firebase
 		firebase.messaging()
@@ -47,9 +48,7 @@ class New extends Component {
 
 	listenOnMessage(){
 		this.messageListener = firebase.messaging().onMessage( message => {
-			this.setState({
-				visible: true
-			})
+			this.props.dispatch(newUpdates())
 		})
 	}
 
@@ -64,16 +63,19 @@ class New extends Component {
 		});
 	}
 
+
 	isVisible(){
 		return (
-			<View style={Styles.container}>
+			<TouchableOpacity
+				onPress={() => this.props.dispatch(getUpdates())}
+				style={Styles.container}>
 				<Text style={Styles.text}>New Updates</Text>
-			</View>
+			</TouchableOpacity>
 		)
 	}
 
 	render(){
-		return this.state.visible ? this.isVisible() : null
+		return this.props.visible ? this.isVisible() : null
 	}
 }
 
@@ -89,4 +91,10 @@ const Styles = StyleSheet.create({
 	}
 })
 
-export default New
+const mapStateToProps = state => {
+	return {
+		visible: state.update
+	}
+}
+
+export default connect(mapStateToProps)(New)

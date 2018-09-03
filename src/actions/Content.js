@@ -8,11 +8,11 @@ export function fetchUpdates(){
 
 		return axios.get(source.fakePosts)
 			.then( res => {
-				return dispatch({ type: "LATEST_FETCHED", payload: res.data.posts })
+				return dispatch({type: "LATEST_FETCHED", payload: res.data.posts})
 			})
 			.catch( err => {
 				console.log('Content Action Error:', err)
-				return dispatch({	type: "LATEST_ERROR", payload: err})
+				return dispatch({type: "LATEST_ERROR", payload: err})
 			})
 	}
 }

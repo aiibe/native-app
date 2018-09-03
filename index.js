@@ -8,6 +8,9 @@ import {name as appName} from './app.json';
 import {Provider} from 'react-redux';
 import store from './src/store';
 
+// Background Messaging
+import BgMessaging from './BgMessaging'
+
 
 class Mapper extends Component {
 	componentDidMount(){
@@ -24,3 +27,4 @@ class Mapper extends Component {
 }
 
 AppRegistry.registerComponent(appName, () => Mapper);
+AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () => BgMessaging);
