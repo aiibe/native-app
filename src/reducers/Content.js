@@ -2,10 +2,10 @@ export function posts(state=[], action){
 	let posts, post, index
 
 	switch(action.type){
-		case "INITIAL_LOAD":
+		case "LATEST_FETCHED":
 			posts = [...action.payload]
 			return posts
-		case "LIKE": // expected a post object in action.payload
+		case "LIKE":
 			posts = state.map( (each, index) => {
 				if (each.id == action.payload.id){
 					return {...each, liked: !each.liked, likes: each.likes+1}
@@ -13,7 +13,7 @@ export function posts(state=[], action){
 				return {...each}
 			})
 			return posts
-		case "UNLIKE": // expected a post object in action.payload
+		case "UNLIKE":
 			posts = state.map( (each, index) => {
 				if (each.id == action.payload.id){
 					return {...each, liked: !each.liked, likes: each.likes-1}

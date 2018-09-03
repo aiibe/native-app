@@ -3,34 +3,21 @@ import {View, FlatList, StyleSheet, Text} from 'react-native';
 
 // Redux Store
 import {connect} from 'react-redux';
-import {init} from '../actions/Content';
+import {fetchUpdates} from '../actions/Content';
 
-// Server requests
-import axios from 'axios';
-import {source} from '../../Settings';
 
 // Components
 import Post from './Post';
-
-
-// Testing
 import New from './New';
-import firebase from 'react-native-firebase';
 
 class Content extends Component {
 	constructor(props){
 		super(props)
 	}
 
-	componentDidMount(){
-		// Load latest posts
-		axios.get(source.fakePosts)
-		// TODO : Check error response  
-		.then( response => {
-			const posts = [...response.data.posts] // Map response.data.posts to redux store
-			this.props.initLoad(posts) // Update our state
-		})
-
+	componentDidMount(){	
+		// Will fetch latest posts
+		this.props.dispatch(fetchUpdates())
 	}
 
 
@@ -64,10 +51,4 @@ const mapStateToProps = state => {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
-	return {
-		initLoad: posts => dispatch(init(posts))
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Content)
+export default connect(mapStateToProps)(Content)
