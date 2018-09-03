@@ -17,7 +17,7 @@ class Content extends Component {
 
 	componentDidMount(){	
 		// Will fetch latest posts
-		this.props.dispatch(fetchUpdates())
+		// this.props.dispatch(fetchUpdates())
 	}
 
 
@@ -29,6 +29,8 @@ class Content extends Component {
 					data={this.props.posts}
 					keyExtractor={(item) => item.id.toString() }
 					renderItem={ ({item}) => <Post item={item} /> }
+					refreshing={this.props.loading}
+					onRefresh={() => this.props.dispatch(fetchUpdates())}
 					/>
 			</View>
 		)
@@ -47,7 +49,8 @@ const Styles = StyleSheet.create({
 const mapStateToProps = state => {
 	// console.log("Content:", state)
 	return {
-		posts: state.posts
+		posts: state.posts.items,
+		loading: state.posts.loading
 	}
 }
 

@@ -4,7 +4,7 @@ import {source} from '../../Settings';
 
 export function fetchUpdates(){
 	return dispatch => {
-		// dispatch({type: 'LATEST_FETCHING'})
+		dispatch({type: 'LATEST_FETCHING'})
 
 		return axios.get(source.fakePosts)
 			.then( res => {
