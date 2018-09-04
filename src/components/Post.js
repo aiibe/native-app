@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet, Dimensions, Image} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
 // Connect to Redux Store
@@ -19,10 +19,12 @@ class Post extends Component {
 	}
 
 	goToPost(){
+		console.log("goToPost", this.props.navigation)
 		this.props.navigation.navigate(
 			"Post",
 			{item: this.props.item}
 		)
+
 	}
 
 	goToLogin(){

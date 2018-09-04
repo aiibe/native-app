@@ -1,7 +1,7 @@
 /** @format */
 import React, {Component} from 'react';
-import {AppRegistry, View} from 'react-native';
-import App from './App';
+import {AppRegistry} from 'react-native';
+import Navigator from './Navigator';
 import {name as appName} from './app.json';
 
 // Store
@@ -20,7 +20,7 @@ class Mapper extends Component {
 	render(){
 		return(
 			<Provider store={store}>
-				<App />
+				<Navigator />
 			</Provider>
 		)
 	}

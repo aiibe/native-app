@@ -5,14 +5,17 @@ import {View, FlatList, StyleSheet, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchUpdates} from '../actions/Content';
 
-
 // Components
 import Post from './Post';
 import New from './New';
 
-class Content extends Component {
+class Latest extends Component {
 	constructor(props){
 		super(props)
+	}
+
+	static navigationOptions = {
+		header: null
 	}
 
 	componentDidMount(){	
@@ -46,11 +49,11 @@ const Styles = StyleSheet.create({
 
 // Connect to Redux Store
 const mapStateToProps = state => {
-	// console.log("Content:", state)
+	// console.log("Latest:", state)
 	return {
 		posts: state.posts.items,
 		loading: state.posts.loading
 	}
 }
 
-export default connect(mapStateToProps)(Content)
+export default connect(mapStateToProps)(Latest)

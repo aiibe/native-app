@@ -1,4 +1,4 @@
-export function auth(state=true, action){
+export function auth(state=false, action){
 	switch(action.type){
 		case "VERIFICATION":
 			return state
