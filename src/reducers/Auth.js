@@ -1,7 +1,9 @@
-export function auth(state=false, action){
+
+
+export function auth(state=null, action){
 	switch(action.type){
-		case "VERIFICATION":
-			return state
+		case "AUTH_RECEIVED":
+			return action.payload
 		default:
 			return state
 	}

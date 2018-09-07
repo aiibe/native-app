@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">vongom</string>
+    <string name="facebook_app_id">2310771282479117</string>
+	 <string name="fb_login_protocol_scheme">fb2310771282479117</string>
 </resources>

@@ -2,7 +2,11 @@ package com.vongom;
 
 import android.app.Application;
 
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.facebook.react.ReactApplication;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
@@ -17,6 +21,12 @@ import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -27,6 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new RNSensitiveInfoPackage(),
+          new FBSDKPackage(mCallbackManager),
           new RNFirebasePackage(),
           new RNFirebaseMessagingPackage(),
           new FastImageViewPackage(),
